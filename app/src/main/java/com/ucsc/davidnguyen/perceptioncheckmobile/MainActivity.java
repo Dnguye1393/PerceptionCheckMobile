@@ -1,9 +1,14 @@
 package com.ucsc.davidnguyen.perceptioncheckmobile;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +17,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setupRollButton();
     }
 
 
@@ -36,4 +42,20 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    private void setupRollButton(){
+        Button rollButton = (Button) findViewById(R.id.MoveToRoller);
+        rollButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText( MainActivity.this, "Time To Roll!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, RollDice.class);
+                //From what i can tell, the intent is trying to call the second paramter. But cannot find it because the 'class address'
+                //is totally out of wack
+
+                startActivity(intent);
+                //startActivity(new Intent(MainActivity.this, RollDice.class)); //This is not working
+            }
+        });
+    }
+
 }
